@@ -1,44 +1,42 @@
 package com.melusi.hospital;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.Manifest.permission.READ_CONTACTS;
+import java.util.Arrays;
 
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity {
+
+    public static ArrayList<String> values = new ArrayList<> (Arrays.asList(
+            "Bed1", "Bed2", "Bed3", "Bed4", "Bed5", "Bed1", "Bed2", "Bed3",
+            "Bed4", "Bed5", "Bed1", "Bed2", "Bed3", "Bed4", "Bed5"
+    ));
+
+    public static ArrayList<String> hospitals = new ArrayList<> (Arrays.asList(
+            "Hospital A", "Hospital A", "Hospital A", "Hospital A", "Hospital A",
+            "Hospital B", "Hospital B", "Hospital B", "Hospital B", "Hospital B",
+            "Hospital C", "Hospital C", "Hospital C", "Hospital C", "Hospital C"
+            ));
+
+    public static ArrayList<Boolean> toggles = new ArrayList<>(Arrays.asList(
+            false, true, false, false, true, false, false, true, false,
+            false, true, false, false, true, false
+    ));
+
+    public static ArrayList<Boolean> reserved = new ArrayList<>(Arrays.asList(
+            false, false, false, false, true, false, false, false, false,
+            false, false, false, false, false, false
+    ));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         mNurse.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getApplicationContext(), ScrollingActivity.class);
+                Intent in = new Intent(getApplicationContext(), NurseView.class);
                 startActivity(in);
             }
         });
