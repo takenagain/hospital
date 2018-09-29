@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Light gradient -->
+    <color name="startGradient">#15b1d8</color>
+    <color name="endGradient">#05404f</color>
+
+    <!-- Dark gradient -->
+    <color name="startDarkGradient">#182ef7</color>
+    <color name="endDarkGradient">#0d1ba3</color>
+
 </resources>
