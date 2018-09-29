@@ -1,10 +1,14 @@
 package com.melusi.hospital;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * TODO: document your custom view class.
@@ -100,6 +105,8 @@ public class NurseListAdapter extends BaseAdapter {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+
+                        SendNotification();
                     }
 
                     LoginActivity.toggles.set(position, newVal);
@@ -109,8 +116,14 @@ public class NurseListAdapter extends BaseAdapter {
             holder.btn_res.setClickable(false);
             holder.btn_res.setChecked(reserved.get(position));
 
-            if(!reserved.get(position))
-                holder.btn_res.setVisibility(View.GONE);
+            if(!reserved.get(position)) {
+                holder.btn_res.setVisibility(View.INVISIBLE);
+                holder.btn.setVisibility(View.VISIBLE);
+            }
+            else {
+                holder.btn.setVisibility(View.INVISIBLE);
+                holder.btn_res.setVisibility(View.VISIBLE);
+            }
 
             holder.btn.setChecked(toggle_vals.get(position));
             holder.text.setText(values.get(position));
@@ -124,6 +137,29 @@ public class NurseListAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+
+    private void SendNotification() {
+        int notificationId = new Random().nextInt(60000);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Intent intent = new Intent(context, NurseView.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, "yes123")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)  //a resource for your custom small icon
+                .setContentTitle("Vacancy") //the "title" value you sent in your notification
+                .setContentText("A hospital bed has been labeled as vacant!") //ditto
+//                .setAutoCancel(true)  //dismisses the notification on click
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("A hospital bed has been labeled as vacant!"))
+                .setContentIntent(pendingIntent)
+                .setSound(defaultSoundUri);
+
+        notificationManager.notify(notificationId /* ID of notification */, notificationBuilder.build());
     }
 
     public static class ViewHolder {

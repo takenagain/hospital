@@ -84,6 +84,15 @@ public class DriverListAdapter extends BaseAdapter {
                 }
             });
 
+            if(toggle_vals.get(position)) {
+                holder.btn_res.setVisibility(View.INVISIBLE);
+                holder.btn.setVisibility(View.VISIBLE);
+            }
+            else {
+                holder.btn.setVisibility(View.INVISIBLE);
+                holder.btn_res.setVisibility(View.VISIBLE);
+            }
+
             holder.btn_res.setChecked(reserved.get(position));
             holder.btn.setChecked(toggle_vals.get(position));
             holder.btn.setClickable(false);

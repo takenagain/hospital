@@ -5,11 +5,20 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- Light gradient -->
-    <color name="startGradient">#15b1d8</color>
-    <color name="endGradient">#05404f</color>
+    <color name="startGradient">#f7f8f9</color>
+    <color name="endGradient">#3698f7</color>
 
     <!-- Dark gradient -->
-    <color name="startDarkGradient">#182ef7</color>
-    <color name="endDarkGradient">#0d1ba3</color>
+    <color name="startDarkGradient">#76bafc</color>
+    <color name="endDarkGradient">#2e4160</color>
+
+    <!-- Light Gradient -->
+    <color name="startLightGradient">#acd3f9</color>
+    <color name="endLightGradient">#76bafc</color>
+
+
+    <color name="buttonText">#94b7ef</color>
+    <color name="white">#f7f8f9</color>
+    <color name="black">#111111</color>
 
 </resources>
