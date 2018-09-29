@@ -23,13 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".nurse_view"
-            android:label="@string/title_activity_nurse_view"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".DriverView"
             android:label="@string/title_activity_driver_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
