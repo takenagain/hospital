@@ -9,7 +9,7 @@ import android.widget.ToggleButton;
 public class DriverView extends AppCompatActivity {
 
     private DriverListAdapter adapter = new DriverListAdapter(this, LoginActivity.values,
-            LoginActivity.hospitals, LoginActivity.toggles);
+            LoginActivity.hospitals, LoginActivity.toggles, LoginActivity.reserved);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,8 @@ public class DriverView extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        adapter.Update(LoginActivity.values, LoginActivity.hospitals, LoginActivity.toggles);
+        adapter.Update(LoginActivity.values, LoginActivity.hospitals,
+                LoginActivity.toggles, LoginActivity.reserved);
         adapter.notifyDataSetChanged();
     }
 

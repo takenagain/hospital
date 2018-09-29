@@ -1,6 +1,10 @@
 package com.melusi.hospital;
 
 import android.content.Context;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +23,22 @@ public class NurseListAdapter extends BaseAdapter {
     private ArrayList<String> values;
     private ArrayList<String> hospitals;
     private ArrayList<Boolean> toggle_vals;
+    private ArrayList<Boolean> reserved;
 
-    public NurseListAdapter(Context context, ArrayList<String> vals, ArrayList<String> hosp, ArrayList<Boolean> t) {
+    public NurseListAdapter(Context context, ArrayList<String> vals, ArrayList<String> hosp,
+                            ArrayList<Boolean> t, ArrayList<Boolean> res) {
         this.values = vals;
         this.hospitals = hosp;
         this.toggle_vals = t;
+        this.reserved = res;
         this.context = context;
     }
 
-    public void Update(ArrayList<String> vals, ArrayList<String> hosp, ArrayList<Boolean> t) {
+    public void Update(ArrayList<String> vals, ArrayList<String> hosp,
+                       ArrayList<Boolean> t, ArrayList<Boolean> res) {
         this.values = vals;
         this.toggle_vals = t;
+        this.reserved = res;
         this.hospitals = hosp;
     }
 
@@ -71,13 +80,37 @@ public class NurseListAdapter extends BaseAdapter {
             holder.text = (TextView) convertView.findViewById(R.id.list_text);
             holder.subtext = (TextView) convertView.findViewById(R.id.list_sub);
             holder.btn = (ToggleButton) convertView.findViewById(R.id.list_toggle);
+            holder.btn_res = (ToggleButton) convertView.findViewById(R.id.list_reserved);
             holder.btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     v = (ToggleButton) v;
-                    LoginActivity.toggles.set(position, !LoginActivity.toggles.get(position));
+
+                    Boolean newVal = !LoginActivity.toggles.get(position);
+
+                    // Hospital bed opened
+                    if(!newVal) {
+                        Vibrator vb = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                        vb.vibrate(100);
+
+                        try {
+                            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                            Ringtone r = RingtoneManager.getRingtone(context.getApplicationContext(), notification);
+                            r.play();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    LoginActivity.toggles.set(position, newVal);
                 }
             });
+
+            holder.btn_res.setClickable(false);
+            holder.btn_res.setChecked(reserved.get(position));
+
+            if(!reserved.get(position))
+                holder.btn_res.setVisibility(View.GONE);
 
             holder.btn.setChecked(toggle_vals.get(position));
             holder.text.setText(values.get(position));
@@ -93,11 +126,11 @@ public class NurseListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private class ViewHolder {
+    public static class ViewHolder {
 
-        protected ToggleButton btn;
-        private TextView text;
-        private TextView subtext;
+        public ToggleButton btn, btn_res;
+        public TextView text;
+        public TextView subtext;
 
     }
 }

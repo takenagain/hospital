@@ -10,7 +10,7 @@ import android.widget.ToggleButton;
 public class NurseView extends AppCompatActivity {
 
     private NurseListAdapter adapter = new NurseListAdapter(this, LoginActivity.values,
-            LoginActivity.hospitals, LoginActivity.toggles);
+            LoginActivity.hospitals, LoginActivity.toggles, LoginActivity.reserved);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,8 @@ public class NurseView extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        adapter.Update(LoginActivity.values, LoginActivity.hospitals, LoginActivity.toggles);
+        adapter.Update(LoginActivity.values, LoginActivity.hospitals, LoginActivity.toggles,
+                LoginActivity.reserved);
         adapter.notifyDataSetChanged();
     }
 }

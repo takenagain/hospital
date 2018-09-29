@@ -40,6 +40,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:padding="5dp"
+        android:paddingBottom="25dp"
         android:textOn="Occupied"
         android:textOff="Empty" />
 
@@ -49,9 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/list_toggle"
         android:padding="5dp"
-        android:textOn="Occupied"
-        android:textOff="Empty" />
+        android:paddingTop="25dp"
+        android:textOn="Reserved"
+        android:textOff= "Open" />
 
 </RelativeLayout>
