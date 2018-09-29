@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "415563336753",
+    "firebase_url": "https://hospital-6a67a.firebaseio.com",
+    "project_id": "hospital-6a67a",
+    "storage_bucket": "hospital-6a67a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415563336753:android:84832ca138ac792b",
+        "android_client_info": {
+          "package_name": "com.melusi.hospital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415563336753-0ak51tt4dp08n0o8ge6qa1gq2b4gv2sd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc54jjxomMU-DNoesFaY5i6TYGGz5J7qg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
